@@ -1,8 +1,7 @@
 # Debezium gitignore
 
 /cache/**
-/debezium-server-spark-sinks/cache/
-/debezium-server-cachedbatch-sinks/cache/
+/debezium-server-iomete-sinks/cache/
 /rocksdb/**
 deploy.sh
 
@@ -108,3 +107,5 @@ fabric.properties
 
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
+/lakehouse/
+/debezium-server-iomete-sinks/lakehouse/
