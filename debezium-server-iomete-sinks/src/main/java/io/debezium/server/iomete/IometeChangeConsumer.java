@@ -108,6 +108,10 @@ public class IometeChangeConsumer extends AbstractChangeConsumer {
                 );
             }
             df.unpersist();
+
+            var tblDf = spark.sql("select * from default.employees_departments2");
+            LOGGER.info("Total records: " + tblDf.count());
+            tblDf.show();
             return numRecords;
         } catch (Exception e) {
             e.printStackTrace();

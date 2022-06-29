@@ -41,7 +41,7 @@ public class ConfigSource extends TestConfigSource {
 
     // logging levels
     config.put("quarkus.log.level", "INFO");
-    config.put("quarkus.log.category.\"org.apache.spark\".level", "WARN");
+    config.put("quarkus.log.category.\"org.apache.spark\".level", "DEBUG");
     config.put("quarkus.log.category.\"org.apache.hadoop\".level", "ERROR");
     config.put("quarkus.log.category.\"org.apache.parquet\".level", "WARN");
     config.put("quarkus.log.category.\"org.eclipse.jetty\".level", "WARN");

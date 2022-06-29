@@ -109,3 +109,5 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 /lakehouse/
 /debezium-server-iomete-sinks/lakehouse/
+**/*.log
+/lakehouseprod/

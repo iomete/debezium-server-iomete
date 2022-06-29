@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -68,6 +69,7 @@ public abstract class AbstractChangeConsumer extends BaseChangeConsumer implemen
   InterfaceBatchSizeWait batchSizeWait;
 
   public void initizalize() throws InterruptedException {
+    LOGGER.info("initizalize");
     // configure and set 
     valSerde.configure(Collections.emptyMap(), false);
     valDeserializer = valSerde.deserializer();
@@ -124,18 +126,18 @@ public abstract class AbstractChangeConsumer extends BaseChangeConsumer implemen
         numUploadedEvents += this.uploadDestination(destinationEvents.getKey(), schemaEvents);
       }
     }
-    // workaround! somehow offset is not saved to file unless we call committer.markProcessed
-    // even its should be saved to file periodically
+
     for (ChangeEvent<Object, Object> record : records) {
       LOGGER.trace("Processed event '{}'", record);
       committer.markProcessed(record);
     }
     committer.markBatchFinished();
+
     this.logConsumerProgress(numUploadedEvents);
+
     LOGGER.debug("Received:{} Processed:{} events", records.size(), numUploadedEvents);
 
     batchSizeWait.waitMs(numUploadedEvents, (int) Duration.between(start, Instant.now()).toMillis());
-
   }
 
   protected void logConsumerProgress(long numUploadedEvents) {

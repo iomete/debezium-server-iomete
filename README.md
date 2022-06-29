@@ -96,3 +96,11 @@ quarkus.log.category."org.apache.parquet".level=WARN
 quarkus.log.category."org.eclipse.jetty".level=WARN
 #
 ```
+
+
+```shell
+rm -rf lakehouseprod
+rm state/history.dat
+rm state/offset.dat
+touch state/offset.dat
+```
