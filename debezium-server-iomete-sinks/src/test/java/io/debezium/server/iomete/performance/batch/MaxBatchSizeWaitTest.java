@@ -23,7 +23,7 @@ import static io.debezium.server.iomete.shared.SparkUtil.getTableData;
 class MaxBatchSizeWaitTest {
   @Inject
   DebeziumMetrics debeziumMetrics;
-  @ConfigProperty(name = "debezium.source.max.batch.size", defaultValue = "1000")
+  @ConfigProperty(name = "debezium.source.max.batch.size", defaultValue = "1002")
   Integer maxBatchSize;
 
   @Test

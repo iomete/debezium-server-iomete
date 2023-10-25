@@ -15,7 +15,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 public class IometeOffsetBackingStore implements OffsetBackingStore {
-    LakehouseBackedStateStore lakehouseBackedStateStore = LakehouseBackedStateStore.instance();
+    LakehouseBackedStateStore lakehouseBackedStateStore = LakehouseBackedStateStoreProvider.instance();
     protected ExecutorService executor;
 
     @Override

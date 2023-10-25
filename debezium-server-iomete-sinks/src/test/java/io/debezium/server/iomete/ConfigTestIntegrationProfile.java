@@ -10,7 +10,7 @@ public class ConfigTestIntegrationProfile implements QuarkusTestProfile {
   @Override
   public Map<String, String> getConfigOverrides() {
     Map<String, String> config = new HashMap<>();
-    config.put("debezium.foo3", "bar");
+    config.put("debezium.foo3", "bar3_override");
     return config;
   }
 
@@ -18,5 +18,7 @@ public class ConfigTestIntegrationProfile implements QuarkusTestProfile {
   public String getConfigProfile() {
     return "mysql";
   }
+
+
 
 }

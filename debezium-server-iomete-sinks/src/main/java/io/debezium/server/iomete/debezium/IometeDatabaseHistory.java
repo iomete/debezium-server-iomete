@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 @ThreadSafe
 public final class IometeDatabaseHistory extends AbstractDatabaseHistory {
     private final FunctionalReadWriteLock lock = FunctionalReadWriteLock.reentrant();
-    LakehouseBackedStateStore lakehouseBackedStateStore = LakehouseBackedStateStore.instance();
+    LakehouseBackedStateStore lakehouseBackedStateStore = LakehouseBackedStateStoreProvider.instance();
 
     @Override
     public void configure(

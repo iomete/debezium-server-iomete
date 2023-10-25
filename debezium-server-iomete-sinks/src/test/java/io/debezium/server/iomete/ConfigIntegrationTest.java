@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 @QuarkusTest
 @TestProfile(ConfigTestIntegrationProfile.class)
 public class ConfigIntegrationTest {
-    @ConfigProperty(name = "debezium.source.max.batch.size", defaultValue = "10000")
+    @ConfigProperty(name = "debezium.source.max.batch.size", defaultValue = "10001")
     Integer maxBatchSize;
 
     @ConfigProperty(name = "debezium.foo", defaultValue = "val")
@@ -28,7 +28,7 @@ public class ConfigIntegrationTest {
 
     @Test
     public void configsOverriddenByConfigurationProfile() {
-        assert foo3.equals("bar");
+        assert foo3.equals("bar3_override");
     }
 
     @Test

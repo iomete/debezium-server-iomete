@@ -1,1 +1,1 @@
-io.debezium.server.iomete.ConfigSource
+io.debezium.server.iomete.IometeTestConfigSource

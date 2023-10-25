@@ -20,7 +20,7 @@ import static io.debezium.server.iomete.shared.SparkUtil.getTableData;
 @QuarkusTestResource(value = SourcePostgresqlDB.class, restrictToAnnotatedClass = true)
 @TestProfile(BatchSparkChangeConsumerTestProfile.class)
 public class BatchSparkChangeConsumerBaseTest {
-  @ConfigProperty(name = "debezium.source.max.batch.size", defaultValue = "10000")
+  @ConfigProperty(name = "debezium.source.max.batch.size", defaultValue = "10003")
   Integer maxBatchSize;
 
   @Test

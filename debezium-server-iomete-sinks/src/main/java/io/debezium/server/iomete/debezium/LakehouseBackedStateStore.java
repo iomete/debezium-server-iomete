@@ -28,23 +28,18 @@ public class LakehouseBackedStateStore {
     private static final StructType SCHEMA =
             StructType.fromDDL("offsets string, database_history string");
 
-    private final SparkSession spark = SparkProvider.createSparkSession();
-
     private final String table = "default.cdc_state";
 
-    private final OffsetState offsetState = new OffsetState();
-    private final DatabaseHistoryState databaseHistoryState = new DatabaseHistoryState();
+    private final OffsetState offsetState;
+    private final DatabaseHistoryState databaseHistoryState;
 
-    private static LakehouseBackedStateStore instance;
+    private final SparkSession spark;
 
-    private LakehouseBackedStateStore() {
-    }
-
-    public static LakehouseBackedStateStore instance() {
-        if (instance == null) {
-            instance = new LakehouseBackedStateStore();
-        }
-        return instance;
+    public LakehouseBackedStateStore(
+            OffsetState offsetState, DatabaseHistoryState databaseHistoryState, SparkSession spark) {
+        this.offsetState = offsetState;
+        this.databaseHistoryState = databaseHistoryState;
+        this.spark = spark;
     }
 
     public void start() {
@@ -112,6 +107,18 @@ public class LakehouseBackedStateStore {
         }
 
         return Optional.empty();
+    }
+}
+
+class LakehouseBackedStateStoreProvider {
+    private static LakehouseBackedStateStore instance;
+
+    public static LakehouseBackedStateStore instance() {
+        if (instance == null) {
+            instance = new LakehouseBackedStateStore(
+                    new OffsetState(), new DatabaseHistoryState(), SparkProvider.createSparkSession());
+        }
+        return instance;
     }
 }
 
