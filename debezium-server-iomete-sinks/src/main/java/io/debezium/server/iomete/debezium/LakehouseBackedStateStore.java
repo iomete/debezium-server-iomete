@@ -79,7 +79,7 @@ public class LakehouseBackedStateStore {
         var rows = List.of(RowFactory.create(offsets, databaseHistory));
         var df = spark.createDataFrame(rows, SCHEMA);
 
-        df.writeTo(table).replace();
+        df.writeTo(table).createOrReplace();
     }
 
     private Optional<Tuple2<String, String>> loadStateFromSpark() {
