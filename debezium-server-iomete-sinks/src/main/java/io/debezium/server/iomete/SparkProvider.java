@@ -14,14 +14,15 @@ import javax.inject.Singleton;
 public class SparkProvider {
     private final Logger logger = LoggerFactory.getLogger(getClass());
     private final static String LAKEHOUSE_DIR = "/Users/vusaldadalov/Documents/iomete/github.com/debezium-server-iomete/lakehouseprod";
+
     @Singleton
     @Produces
-    SparkSession sparkSession(){
+    SparkSession sparkSession() {
         logger.debug("Getting spark session");
         return createSparkSession();
     }
 
-    public static SparkSession createSparkSession(){
+    public static SparkSession createSparkSession() {
         return SparkSession.builder()
                 .appName("CDC-Batch-Spark-Sink")
                 .master("local")
