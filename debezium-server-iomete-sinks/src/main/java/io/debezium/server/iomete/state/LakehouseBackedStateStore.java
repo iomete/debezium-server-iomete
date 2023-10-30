@@ -1,4 +1,4 @@
-package io.debezium.server.iomete.debezium;
+package io.debezium.server.iomete.state;
 
 import io.debezium.document.DocumentReader;
 import io.debezium.document.DocumentWriter;
@@ -36,7 +36,9 @@ public class LakehouseBackedStateStore {
     private final SparkSession spark;
 
     public LakehouseBackedStateStore(
-            OffsetState offsetState, DatabaseHistoryState databaseHistoryState, SparkSession spark) {
+            SparkSession spark,
+            OffsetState offsetState,
+            DatabaseHistoryState databaseHistoryState) {
         this.offsetState = offsetState;
         this.databaseHistoryState = databaseHistoryState;
         this.spark = spark;
@@ -73,7 +75,7 @@ public class LakehouseBackedStateStore {
     }
 
     public void takeSnapshot() throws IOException {
-        String offsets =  offsetState.getState();
+        String offsets = offsetState.getState();
         String databaseHistory = databaseHistoryState.getState();
 
         var rows = List.of(RowFactory.create(offsets, databaseHistory));
@@ -113,10 +115,12 @@ public class LakehouseBackedStateStore {
 class LakehouseBackedStateStoreProvider {
     private static LakehouseBackedStateStore instance;
 
-    public static LakehouseBackedStateStore instance() {
+    public static synchronized LakehouseBackedStateStore instance() {
         if (instance == null) {
             instance = new LakehouseBackedStateStore(
-                    new OffsetState(), new DatabaseHistoryState(), SparkProvider.createSparkSession());
+                    SparkProvider.createSparkSession(),
+                    new OffsetState(),
+                    new DatabaseHistoryState());
         }
         return instance;
     }
@@ -214,5 +218,4 @@ class OffsetState {
 
         return Base64.getEncoder().encodeToString(byteArrayOutputStream.toByteArray());
     }
-
 }

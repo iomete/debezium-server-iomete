@@ -1,4 +1,4 @@
-package io.debezium.server.iomete.debezium;
+package io.debezium.server.iomete.state;
 
 import io.debezium.annotation.ThreadSafe;
 import io.debezium.config.Configuration;
@@ -8,12 +8,18 @@ import io.debezium.relational.history.HistoryRecord;
 import io.debezium.relational.history.HistoryRecordComparator;
 import io.debezium.util.FunctionalReadWriteLock;
 
+import javax.enterprise.context.Dependent;
 import java.util.function.Consumer;
 
+@Dependent
 @ThreadSafe
-public final class IometeDatabaseHistory extends AbstractDatabaseHistory {
+public final class IcebergBackedDatabaseHistory extends AbstractDatabaseHistory {
     private final FunctionalReadWriteLock lock = FunctionalReadWriteLock.reentrant();
     LakehouseBackedStateStore lakehouseBackedStateStore = LakehouseBackedStateStoreProvider.instance();
+
+    public IcebergBackedDatabaseHistory(){
+
+    }
 
     @Override
     public void configure(
@@ -51,6 +57,6 @@ public final class IometeDatabaseHistory extends AbstractDatabaseHistory {
 
     @Override
     public String toString() {
-        return "IometeDatabaseHistory";
+        return "IcebergBackedDatabaseHistory";
     }
 }

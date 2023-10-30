@@ -1,11 +1,11 @@
-package io.debezium.server.iomete.debezium;
+package io.debezium.server.iomete.state;
 
 import org.apache.kafka.common.utils.ThreadUtils;
 import org.apache.kafka.connect.errors.ConnectException;
 import org.apache.kafka.connect.runtime.WorkerConfig;
-import org.apache.kafka.connect.storage.OffsetBackingStore;
 import org.apache.kafka.connect.util.Callback;
 
+import javax.enterprise.context.Dependent;
 import java.nio.ByteBuffer;
 import java.util.Collection;
 import java.util.Map;
@@ -14,9 +14,13 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
-public class IometeOffsetBackingStore implements OffsetBackingStore {
+@Dependent
+public class IcebergOffsetBackingStore implements org.apache.kafka.connect.storage.OffsetBackingStore {
     LakehouseBackedStateStore lakehouseBackedStateStore = LakehouseBackedStateStoreProvider.instance();
     protected ExecutorService executor;
+
+    public IcebergOffsetBackingStore() {
+    }
 
     @Override
     public void start() {
@@ -35,7 +39,7 @@ public class IometeOffsetBackingStore implements OffsetBackingStore {
                 Thread.currentThread().interrupt();
             }
             if (!executor.shutdownNow().isEmpty()) {
-                throw new ConnectException("Failed to stop MemoryOffsetBackingStore. Exiting without cleanly " +
+                throw new ConnectException("Failed to stop IcebergOffsetBackingStore. Exiting without cleanly " +
                         "shutting down pending tasks and/or callbacks.");
             }
             executor = null;
@@ -59,7 +63,5 @@ public class IometeOffsetBackingStore implements OffsetBackingStore {
     }
 
     @Override
-    public void configure(WorkerConfig config) {
-
-    }
+    public void configure(WorkerConfig config) {}
 }

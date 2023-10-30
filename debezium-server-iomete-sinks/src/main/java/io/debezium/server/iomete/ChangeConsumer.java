@@ -1,11 +1,7 @@
 package io.debezium.server.iomete;
 
-import com.esotericsoftware.kryo.util.ObjectMap;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.debezium.engine.ChangeEvent;
 import io.debezium.engine.DebeziumEngine;
-import io.debezium.engine.RecordChangeEvent;
 import io.debezium.engine.format.Json;
 import io.debezium.serde.DebeziumSerdes;
 import io.debezium.server.BaseChangeConsumer;
@@ -40,7 +36,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Named("iomete")

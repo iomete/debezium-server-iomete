@@ -12,7 +12,7 @@ public class IometeChangeConsumerMysqlTestIntegrationProfile implements QuarkusT
     Map<String, String> config = new HashMap<>();
     config.put("quarkus.profile", "mysql");
     config.put("%mysql.debezium.source.connector.class", "io.debezium.connector.mysql.MySqlConnector");
-    config.put("debezium.source.database.history", "io.debezium.relational.history.MemoryDatabaseHistory");
+    //config.put("debezium.source.database.history", "io.debezium.relational.history.MemoryDatabaseHistory");
 
     config.put("debezium.source.max.batch.size", "500");
     config.put("debezium.source.max.queue.size", "70000");
