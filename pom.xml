@@ -102,20 +102,6 @@
                 <artifactId>httpcore</artifactId>
                 <version>4.4.15</version>
             </dependency>
-<!--            <dependency>-->
-<!--                <groupId>org.jboss.logmanager</groupId>-->
-<!--                <artifactId>log4j-jboss-logmanager</artifactId>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.jboss.logmanager</groupId>-->
-<!--                <artifactId>log4j2-jboss-logmanager</artifactId>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.apache.logging.log4j</groupId>-->
-<!--                <artifactId>log4j-core</artifactId>-->
-<!--                <version>${version.log4j}</version>-->
-<!--            </dependency>-->
-            <!-- Scala -->
             <dependency>
                 <groupId>org.scala-lang</groupId>
                 <artifactId>scala-library</artifactId>
