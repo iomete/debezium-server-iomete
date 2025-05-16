@@ -13,7 +13,7 @@ import javax.inject.Singleton;
 @ApplicationScoped
 public class SparkProvider {
     private final Logger logger = LoggerFactory.getLogger(getClass());
-    private final static String LAKEHOUSE_DIR = "/Users/vusaldadalov/Documents/iomete/github.com/debezium-server-iomete/lakehouseprod";
+    private final static String LAKEHOUSE_DIR = "/tmp/lakehouseprod";
 
     @Singleton
     @Produces
